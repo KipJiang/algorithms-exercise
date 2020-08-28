@@ -80,21 +80,31 @@ void shell_sort(vector<T>& array)
 //         }
 // }
 
-
+/* Recursive version 1 */
 template <typename T>
-void merge(vector<T>& left, vector<T>& right)
+vector<T> merge(vector<T>& left, vector<T>& right)
 {
     vector<T> res;
-    
+    vector<T> *lptr = left.begin();
+    vector<T> *rptr = right.begin();
+
+    while (lptr != left.end() || rptr != right.end()) {
+        if (*lptr <= *rptr) {
+            res.push_back(*lptr);
+            lptr++;
+        } else {
+            res.push_back(*rptr);
+            rptr++;
+        }
+    }
+    return res;
 }
 
 
 template <typename T>
 void merge_sort(vector<T>& array)
 {
-    vector<T> left, right;
-    int middle = array.size() / 2;
-    
+
 }
 
 
