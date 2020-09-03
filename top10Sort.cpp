@@ -17,6 +17,7 @@ void print_array(vector<T>& array)
     cout << endl;
 }
 
+
 /**
  * @brief 冒泡排序
  * 从头到尾，每次比较相邻的两个元素，逆序即做交换；
@@ -31,6 +32,7 @@ void bubble_sort(vector<T>& array)
             if (array[j] > array[j + 1])
                 swap(array[j], array[j + 1]);
 }
+
 
 /**
  * @brief 选择排序
@@ -50,6 +52,7 @@ void selection_sort(vector<T>& array)
             swap(array[i], array[min_index]);
     }
 }
+
 
 /**
  * @brief 插入排序
@@ -71,6 +74,7 @@ void insertion_sort(vector<T>& array)
         }
     }
 }
+
 
 /**
  * @brief 希尔排序
@@ -102,6 +106,7 @@ void shell_sort(vector<T>& array)
 //         }
 // }
 
+
 /**
  * @brief 归并排序
  * 将数组划分为左右两个一样大小的子序列，假定这两个子序列是有序的，可以通过简单的大小比
@@ -112,29 +117,13 @@ void shell_sort(vector<T>& array)
 /* Recursive version 1 */
 template <typename T>
 vector<T> merge(vector<T>& left, vector<T>& right)
-{
-    vector<T> res;
-    vector<T> *lptr = left.begin();
-    vector<T> *rptr = right.begin();
-
-    while (lptr != left.end() || rptr != right.end()) {
-        if (*lptr <= *rptr) {
-            res.push_back(*lptr);
-            lptr++;
-        } else {
-            res.push_back(*rptr);
-            rptr++;
-        }
-    }
-    return res;
-}
+{}
 
 
 template <typename T>
 void merge_sort(vector<T>& array)
-{
+{}
 
-}
 
 /**
  * @brief 快速排序
@@ -143,12 +132,14 @@ template <typename T>
 void quick_sort(vector<T>& array)
 {}
 
+
 /**
  * @brief 堆排序
  */
 template <typename T>
 void heapify_sort(vector<T>& array)
 {}
+
 
 /**
  * @brief 计数排序
@@ -157,12 +148,14 @@ template <typename T>
 void counting_sort(vector<T>& array)
 {}
 
+
 /**
  * @brief 桶排序
  */
 template <typename T>
 void bucket_sort(vector<T>& array)
 {}
+
 
 /**
  * @brief 基数排序
