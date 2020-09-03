@@ -6,6 +6,7 @@
  */
 #include <iostream>
 #include <vector>
+#include <limits>
 
 using namespace std;
 
@@ -82,7 +83,10 @@ void insertion_sort(vector<T>& array)
  * 再使得 gap 减半（或者自己设定缩减值），再次对子序列排序；
  * 直到 gap 减为 1，做最后一次排序。
  */
-/* shell sort version 1 */
+/** 
+ * shell sort version 1 
+ * using swap function
+ */
 template <typename T>
 void shell_sort(vector<T>& array)
 {
@@ -92,7 +96,10 @@ void shell_sort(vector<T>& array)
                 swap(array[j+gap], array[j]);
 }
 
-/* shell sort version 2 */
+/** 
+ * shell sort version 2
+ * exchange the values continuously
+ */
 // template <typename T>
 // void shell_sort(vector<T>& array)
 // {
@@ -114,16 +121,66 @@ void shell_sort(vector<T>& array)
  * 而为了使这两个子序列有序，可以按上述方式递归，将子序列再划分，直到仅仅比较两个元素的大
  * 小。
  */
-/* Recursive version 1 */
+/** 
+ * Recursive version 1
+ */
 template <typename T>
-vector<T> merge(vector<T>& left, vector<T>& right)
-{}
+void merge(vector<T>& array, int front, int mid, int end)
+{
+    /**
+     * Preconditions:
+     * array[front, ..., mid] is sorted, --> left
+     * array[mid+1, ..., end] is sorted, --> right
+     */
+    vector<T> left(array.begin()+front, array.begin()+mid+1);
+    vector<T> right(array.begin()+mid+1, array.begin()+end+1);
+    
+    int idx_left = 0;
+    int idx_right = 0;
+    // numeric_limits<int>::max() -- int 整型的最大值
+    // vector.insert() -- 内置函数，在指定位置之前，插入新元素
+    left.insert(left.end(), numeric_limits<int>::max());
+    right.insert(right.end(), numeric_limits<int>::max());
+    // cout << left.size() << " " << right.size() << endl;
+    // return;
 
+    // pick up the minus one of left[idx_left] and right[idx_right], and put it 
+    // to array[i]
+    for (int i = front; i <= end; i++) {
+        if (left[idx_left] < right[idx_right]) {
+            array[i] = left[idx_left];
+            idx_left++;
+        } else {
+            array[i] = right[idx_right];
+            idx_right++;
+        }
+    }
+}
 
 template <typename T>
-void merge_sort(vector<T>& array)
-{}
+void merge_sort(vector<T>& array, int front, int end)
+{
+    if (front >= end)
+        return;
+    int mid = (front+end) / 2;
+    merge_sort(array, front, mid);
+    merge_sort(array, mid+1, end);
+    merge(array, front, mid, end);
+}
 
+/**
+ * Iterative version 2 
+ * 
+ */
+// template <typename T>
+// vector<T> merge(vector<T>& left, vector<T>& right)
+// {
+
+// }
+
+// template <typename T>
+// void merge_sort(vector<T>& array)
+// {}
 
 /**
  * @brief 快速排序
@@ -202,8 +259,8 @@ int main(int argc, char *argv[]) {
             break;
         case 5:
             cout << "merge sort" << endl;
-            merge_sort(arr);
-            merge_sort(arrf);
+            merge_sort(arr, 0, arr.size()-1);
+            merge_sort(arrf, 0, arrf.size()-1);
             break;
         case 6:
             cout << "quick sort" << endl;
