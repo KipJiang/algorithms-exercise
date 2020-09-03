@@ -1,9 +1,9 @@
 CC=g++
 CCFLAG=-std=c++11 -Wall -I.
 
-SOURCES=top_ten_sort_algo.cpp
-OBJS=top_ten_sort_algo.o
-OUTPUT=top_10_sort
+SOURCES=top10Sort.cpp
+OBJS=top10Sort.o
+OUTPUT=top10Sort
 
 main:
 	$(CC) -o $(OUTPUT) $(CCFLAG) $(SOURCES)

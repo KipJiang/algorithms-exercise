@@ -1,3 +1,9 @@
+/**
+ * 十大经典排序算法
+ * https://www.runoob.com/w3cnote/ten-sorting-algorithm.html
+ * 算法复杂度
+ * https://www.runoob.com/wp-content/uploads/2019/03/sort.png
+ */
 #include <iostream>
 #include <vector>
 
@@ -11,7 +17,11 @@ void print_array(vector<T>& array)
     cout << endl;
 }
 
-// 整数或浮点数皆可使用，若要使用类(class)或结构体(struct)时必须重载大于(>)运算符
+/**
+ * @brief 冒泡排序
+ * 从头到尾，每次比较相邻的两个元素，逆序即做交换；
+ * 多次循环换，直到所有元素从小到大有序排列。
+ */
 template <typename T>
 void bubble_sort(vector<T>& array)
 {
@@ -22,7 +32,11 @@ void bubble_sort(vector<T>& array)
                 swap(array[j], array[j + 1]);
 }
 
-
+/**
+ * @brief 选择排序
+ * 假定一个最小元素（比如首元素），然后依次同其后的元素比较，
+ * 每当比这个假定值小时即做交换，从而得到最小元素；循环多次，知道数组有序。
+ */
 template <typename T>
 void selection_sort(vector<T>& array)
 {
@@ -37,7 +51,11 @@ void selection_sort(vector<T>& array)
     }
 }
 
-
+/**
+ * @brief 插入排序
+ * 每次从前往后选定一个子序列，接着设置其后的一个元素为 flag，使用 flag 元素，对子序列
+ * 从后往前一次比较其中元素，小于前一个则做交换；循环多次，直到所有元素有序。
+ */
 template <typename T>
 void insertion_sort(vector<T>& array)
 {
@@ -54,7 +72,12 @@ void insertion_sort(vector<T>& array)
     }
 }
 
-
+/**
+ * @brief 希尔排序
+ * 以间隔 gap（通常是数组大小的一般） 选择子序列，对子序列排序；
+ * 再使得 gap 减半（或者自己设定缩减值），再次对子序列排序；
+ * 直到 gap 减为 1，做最后一次排序。
+ */
 /* shell sort version 1 */
 template <typename T>
 void shell_sort(vector<T>& array)
@@ -64,7 +87,6 @@ void shell_sort(vector<T>& array)
             for (int j = i-gap; j >= 0 && array[j] > array[j+gap]; j -= gap)
                 swap(array[j+gap], array[j]);
 }
-
 
 /* shell sort version 2 */
 // template <typename T>
@@ -80,6 +102,13 @@ void shell_sort(vector<T>& array)
 //         }
 // }
 
+/**
+ * @brief 归并排序
+ * 将数组划分为左右两个一样大小的子序列，假定这两个子序列是有序的，可以通过简单的大小比
+ * 较，合并两个子序列，从而得到一个有序数组；
+ * 而为了使这两个子序列有序，可以按上述方式递归，将子序列再划分，直到仅仅比较两个元素的大
+ * 小。
+ */
 /* Recursive version 1 */
 template <typename T>
 vector<T> merge(vector<T>& left, vector<T>& right)
@@ -107,27 +136,37 @@ void merge_sort(vector<T>& array)
 
 }
 
-
+/**
+ * @brief 快速排序
+ */
 template <typename T>
 void quick_sort(vector<T>& array)
 {}
 
-
+/**
+ * @brief 堆排序
+ */
 template <typename T>
 void heapify_sort(vector<T>& array)
 {}
 
-
+/**
+ * @brief 计数排序
+ */
 template <typename T>
 void counting_sort(vector<T>& array)
 {}
 
-
+/**
+ * @brief 桶排序
+ */
 template <typename T>
 void bucket_sort(vector<T>& array)
 {}
 
-
+/**
+ * @brief 基数排序
+ */
 template <typename T>
 void radix_sort(vector<T>& array)
 {}
