@@ -100,18 +100,20 @@ void shell_sort(vector<T>& array)
  * shell sort version 2
  * exchange the values continuously
  */
-// template <typename T>
-// void shell_sort(vector<T>& array)
-// {
-//     for (int gap = array.size() >> 1; gap > 0; gap >>= 1)
-//         for (int i = gap; i < array.size(); i++) {
-//             int j;
-//             T temp = array[i];
-//             for (j = i-gap; j >=0 && array[j] > temp; j -= gap)
-//                 array[j+gap] = array[j];
-//             array[j+gap] = temp;
-//         }
-// }
+#if 0
+template <typename T>
+void shell_sort(vector<T>& array)
+{
+    for (int gap = array.size() >> 1; gap > 0; gap >>= 1)
+        for (int i = gap; i < array.size(); i++) {
+            int j;
+            T temp = array[i];
+            for (j = i-gap; j >=0 && array[j] > temp; j -= gap)
+                array[j+gap] = array[j];
+            array[j+gap] = temp;
+        }
+}
+#endif
 
 
 /**
@@ -122,58 +124,60 @@ void shell_sort(vector<T>& array)
  * 小。
  */
 /** 
- * Recursive version 1
+ * Recursive version 1, 递归版
  */
-// template <typename T>
-// void merge(vector<T>& array, int front, int mid, int end)
-// {
-//     /**
-//      * Preconditions:
-//      * array[front, ..., mid] is sorted, --> left
-//      * array[mid+1, ..., end] is sorted, --> right
-//      */
-//     vector<T> left(array.begin()+front, array.begin()+mid+1);
-//     vector<T> right(array.begin()+mid+1, array.begin()+end+1);
+#if 0
+template <typename T>
+void merge(vector<T>& array, int front, int mid, int end)
+{
+    /**
+     * Preconditions:
+     * array[front, ..., mid] is sorted, --> left
+     * array[mid+1, ..., end] is sorted, --> right
+     */
+    vector<T> left(array.begin()+front, array.begin()+mid+1);
+    vector<T> right(array.begin()+mid+1, array.begin()+end+1);
     
-//     int idx_left = 0;
-//     int idx_right = 0;
-//     // numeric_limits<int>::max() -- int 整型的最大值
-//     // vector.insert() -- 内置函数，在指定位置之前，插入新元素
-//     left.insert(left.end(), numeric_limits<int>::max());
-//     right.insert(right.end(), numeric_limits<int>::max());
-//     // cout << left.size() << " " << right.size() << endl;
-//     // return;
+    int idx_left = 0;
+    int idx_right = 0;
+    // numeric_limits<int>::max() -- int 整型的最大值
+    // vector.insert() -- 内置函数，在指定位置之前，插入新元素
+    left.insert(left.end(), numeric_limits<int>::max());
+    right.insert(right.end(), numeric_limits<int>::max());
+    // cout << left.size() << " " << right.size() << endl;
+    // return;
 
-//     // pick up the minus one of left[idx_left] and right[idx_right], and put it 
-//     // to array[i]
-//     for (int i = front; i <= end; i++) {
-//         if (left[idx_left] < right[idx_right]) {
-//             array[i] = left[idx_left];
-//             idx_left++;
-//         } else {
-//             array[i] = right[idx_right];
-//             idx_right++;
-//         }
-//     }
-// }
+    // pick up the minus one of left[idx_left] and right[idx_right], and put it 
+    // to array[i]
+    for (int i = front; i <= end; i++) {
+        if (left[idx_left] < right[idx_right]) {
+            array[i] = left[idx_left];
+            idx_left++;
+        } else {
+            array[i] = right[idx_right];
+            idx_right++;
+        }
+    }
+}
 
-// template <typename T>
-// void merge_sort(vector<T>& array, int front, int end)
-// {
-//     if (front >= end)
-//         return;
-//     int mid = (front+end) / 2;
-//     merge_sort(array, front, mid);
-//     merge_sort(array, mid+1, end);
-//     merge(array, front, mid, end);
-// }
+template <typename T>
+void merge_sort(vector<T>& array, int front, int end)
+{
+    if (front >= end)
+        return;
+    int mid = (front+end) / 2;
+    merge_sort(array, front, mid);
+    merge_sort(array, mid+1, end);
+    merge(array, front, mid, end);
+}
+#endif
 
 /**
- * Iterative version 2 
+ * Iterative version 2, 迭代版
  * 
  */
 template <typename T>
-void merge_sort(vector<T>& array)
+void merge_sort(vector<T>& array, int front, int end)
 {
     
 }
