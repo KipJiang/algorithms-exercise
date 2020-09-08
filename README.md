@@ -1,3 +1,3 @@
 ## Algorithms Exercises
 
-This repo stores some resource code for my algorithms exercise.
+This repo stores some source codes for algorithm exercises.
